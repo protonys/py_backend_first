@@ -1,6 +1,7 @@
 '''Модуль регистрации конечных точек API сервиса'''
 import API.quote as quote
 import API.user as user
+import dba.exception as ex
 
 def addEndPoints(api):
     '''Регистрация конечных точек API сервиса'''
@@ -9,3 +10,6 @@ def addEndPoints(api):
 
     #Регистрация API для пользователей
     api.add_resource(user.User, "/ai-users", "/ai-users/", "/ai-users/<int:id>")
+
+    if not api:
+        raise ex.UserNotFoundException('error')
